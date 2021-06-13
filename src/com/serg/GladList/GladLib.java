@@ -13,14 +13,17 @@ public class GladLib {
 	private ArrayList<String> timeList;
 	private ArrayList<String> verbList;
 	private ArrayList<String> fruitList;
+	private ArrayList<String> usedWords;
 
 	private Random myRandom;
 	
 	private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
-	private static String dataSourceDirectory = "com/serg/GladList/data";
+	private static String dataSourceDirectory = "com/serg/GladList/datalong";
 	
 	public GladLib(){
 		initializeFromSource(dataSourceDirectory);
+		usedWords = new ArrayList<String>();
+		usedWords.clear();
 		myRandom = new Random();
 	}
 	
@@ -36,7 +39,9 @@ public class GladLib {
 		countryList = readIt(source+"/country.txt");
 		nameList = readIt(source+"/name.txt");		
 		animalList = readIt(source+"/animal.txt");
-		timeList = readIt(source+"/timeframe.txt");		
+		timeList = readIt(source+"/timeframe.txt");
+		verbList = readIt(source+"/verb.txt");
+		fruitList = readIt(source+"/fruit.txt");
 	}
 	
 	private String randomFrom(ArrayList<String> source){
@@ -79,16 +84,22 @@ public class GladLib {
 		return "**UNKNOWN**";
 	}
 	
-	private String processWord(String w){
+	private String processWord(String w) {
 		int first = w.indexOf("<");
-		int last = w.indexOf(">",first);
-		if (first == -1 || last == -1){
+		int last = w.indexOf(">", first);
+		if (first == -1 || last == -1) {
 			return w;
 		}
-		String prefix = w.substring(0,first);
-		String suffix = w.substring(last+1);
-		String sub = getSubstitute(w.substring(first+1,last));
-		return prefix+sub+suffix;
+		String prefix = w.substring(0, first);
+		String suffix = w.substring(last + 1);
+		while (true) {
+			String sub = getSubstitute(w.substring(first + 1, last));
+			if (usedWords.indexOf(sub)==-1){
+				usedWords.add(sub);
+				return prefix+sub+suffix;
+			}
+			else System.out.println("hit the same "+ sub+ "\t"+ w);
+		}
 	}
 	
 	private void printOut(String s, int lineWidth){
@@ -139,8 +150,11 @@ public class GladLib {
 	
 	public void makeStory(){
 	    System.out.println("\n");
-		String story = fromTemplate("com/serg/GladList/data/madtemplate.txt");
+		String story = fromTemplate("com/serg/GladList/data/madtemplate2.txt");
 		printOut(story, 60);
+		for(String usedWord: usedWords){
+			System.out.println(usedWord);
+		}
 	}
 	
 
