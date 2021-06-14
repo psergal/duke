@@ -14,6 +14,8 @@ public class WordsInFiles {
     public WordsInFiles(){
         map = new HashMap<String, ArrayList>();
         uniqueWords = new HashMap<String, Integer>();
+        // map - ключ имя файла Значение моассив из слов
+        // uniqueWords Ключ слово Значение количество повторений
 
     }
     private void addWordsFromFile (File f){
@@ -53,8 +55,11 @@ public class WordsInFiles {
     private ArrayList<String> wordsInNumFiles(int number){
         ArrayList<String> list = new ArrayList<String>();
         for (String w: uniqueWords.keySet()){
-            if (uniqueWords.get(w)==number)
-                list.add(w);
+            int counter =0;
+            for (String fnmae: map.keySet()){
+                if (map.get(fnmae).contains(w)) counter++;
+            }
+            if (counter==number) list.add(w);
         }
         return list;
     }
@@ -67,12 +72,13 @@ public class WordsInFiles {
     public void tester(){
         buildWordFileMap();
         int maxWordCounts= maxNumber();
-        System.out.println("Maw word occurs is "+maxWordCounts);
-        int nunFiles =2;
+        System.out.println("Max word occurs is "+maxWordCounts);
+        int nunFiles =4;
         ArrayList<String>wInNumF = wordsInNumFiles(nunFiles);
-        for (String w: wInNumF)
-            System.out.println(w);
-        String testWord= "dogs";
+        System.out.println(wInNumF.size());
+//        for (String w: wInNumF)
+//            System.out.println(w);
+        String testWord= "tree";
         printFilesIn(testWord);
     }
 

@@ -1,5 +1,7 @@
 package com.serg.Codon;
 
+import edu.duke.FileResource;
+
 import java.util.HashMap;
 
 public class CodonCounts {
@@ -40,17 +42,17 @@ public class CodonCounts {
         }
     }
     public void testBuildCodonMap (){
-//        FileResource fr = new FileResource("src/com/serg/Codon/data/GRch38dnapart.fa.txt");
-//        String geneChain = fr.asString().toUpperCase();
-        String geneChain = "CGTTCAAGTTCAA";
+        FileResource fr = new FileResource("com/serg/Codon/data/dnaMystery2.txt");
+        String geneChain = fr.asString().toUpperCase();
+//        String geneChain = "CGTTCAAGTTCAA";
 
         for (int k=0; k<=2; k++) {
             buildCodonMap(k, geneChain);
             System.out.println("the total number of unique codon is "+ map.size());
             String mostCommonCodon = getMostCommonCodon();
             System.out.println("most common codon is - " + mostCommonCodon+ " and max counts is "+ map.get(mostCommonCodon));
-            int start = 1;
-            int stop = 5;
+            int start = 6;
+            int stop = 100;
             printCodonCounts(start, stop);
         }
     }
