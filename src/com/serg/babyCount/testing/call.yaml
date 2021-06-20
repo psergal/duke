@@ -1,0 +1,59 @@
+@startyaml
+  id: 123213
+    creatorEmployee:
+      employeeNumber: 23144-ГГГ
+      employeeProfile: Финаносовый советник
+      employeeFio: Быстров Святослав Вальдермарович
+    executorEmployee:
+      employeeNumber: 23166-УУУ
+      employeeProfile: Старший операционный менеджер
+      employeeFio: Быстрова Ольи Ивановна
+    responsibleEmploye:
+      employeeNumber: 23177-УУУ
+      employeeProfile: Старший операционный менеджер
+      employeeFio: Быстрова Ольи Ивановна
+  type:
+     - External meetimg
+     - Appointment
+     - OutlookMeeting
+     - Call - Outbound
+     - Call - Inbound
+     - OutgoingVideoCall
+     - IncomingVideoCall
+     - Chating
+     - First Meeting
+  status:
+     - Scheduled
+     - In Progress
+     - Done
+     - Cancelled
+  note: Комментарий Результат
+  description: Описание активности
+  clientEpkId: 243243
+  clientFio: Иванов Иван Иванович
+  clientSegment: VIP
+  segmentChangeType: VIP - Premier
+  createdDateTime: 12/31/2020 04:03:01
+  plannedStartDateTime: 12/31/2020 04:03:01
+  plannedEndDateTime: 12/31/2020 04:03:01
+  endDateTime: 12/31/2020 04:03:01
+  callId: 8768768
+  parentId: 987979
+  locationName: Переговорка 1
+  isAuthBiometry:
+    - True
+    - False
+  invitedColleagues:
+    Colegues:
+      Employee:
+        employeeNumber1: 23123-УУУ
+        employeeProfile: Старший операционный менеджер
+        employeeFio: Быстрова Ольи Ивановна
+        colleagueStatus: true
+      Employee2:
+        employeeNumber: 23123-УУУ
+        employeeProfile: Старший операционный менеджер
+        employeeFio: Быстрова Ольи Ивановна
+        colleagueStatus: false
+
+@endyaml

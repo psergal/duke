@@ -123,4 +123,22 @@ public class LogAnalyzer
          }
          return mostDay;
      }
+     public ArrayList<String> iPsWithMostVisitsOnDay(HashMap<String,
+             ArrayList<String>> ipPerDays, String someday){
+
+         ArrayList<String> ipPerDay = ipPerDays.get(someday);
+         HashMap<String,Integer> counts = new HashMap<String, Integer>();
+         int maxVisits = 0;
+            for (String ip: ipPerDay){
+                if (!counts.containsKey(ip)) counts.put(ip,1);
+                else counts.put(ip,counts.get(ip)+1);
+            }
+            for (String ip: counts.keySet())
+                maxVisits=Math.max(maxVisits,counts.get(ip));
+            ArrayList<String> resultIpList = new  ArrayList<String>();
+            for (String ip: counts.keySet()){
+                if (counts.get(ip)==maxVisits) resultIpList.add(ip);
+            }
+            return resultIpList;
+     }
 }
